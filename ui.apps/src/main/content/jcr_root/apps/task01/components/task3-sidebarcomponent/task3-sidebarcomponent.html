@@ -1,0 +1,58 @@
+<h1>Task 3:SideBar Component</h1>
+<div data-sly-use.model="com.task01.core.models.Sidebar">
+  <!-- Tab 1: Header -->
+  <div class="header">
+    <h2>Header</h2>
+    <p><strong>Logo Path:</strong> ${model.logoPath || 'Not set'}</p>
+    <p>
+      <strong>Logo Mobile Image:</strong> ${model.logoMobileImage || 'Not set'}
+    </p>
+    <p><strong>Logo Link:</strong> ${model.logoLink || 'Not set'}</p>
+    <p>
+      <strong>Enable Switch:</strong> ${model.enableSwitch ? 'Enabled' :
+      'Disabled'}
+    </p>
+  </div>
+
+  <!-- Tab 2: Header Links -->
+  <div class="header-links">
+    <h2>Header Links</h2>
+    <ul data-sly-list.link="${model.headerLinks}">
+      <li>
+        <p><strong>Name:</strong> ${link.name || 'Not set'}</p>
+        <p><strong>Image:</strong> ${link.image || 'Not set'}</p>
+      </li>
+    </ul>
+    <p data-sly-test="${!model.headerLinks}">No header links configured.</p>
+  </div>
+
+  <!-- Tab 3: Sidebar Navigation -->
+  <div class="sidebar-navigation">
+    <h2>Sidebar Navigation</h2>
+    <ul data-sly-list.nav="${model.sidebarNavigation}">
+      <li>
+        <p><strong>Desktop Icon:</strong> ${nav.desktopIcon || 'Not set'}</p>
+        <p><strong>Mobile Icon:</strong> ${nav.mobileIcon || 'Not set'}</p>
+        <div class="nested-nav-urls">
+          <h3>Navigation URLs</h3>
+          <ul data-sly-list.url="${nav.navigationUrls}">
+            <li><strong>URL:</strong> ${url.navigationUrl || 'Not set'}</li>
+          </ul>
+          <p data-sly-test="${!nav.navigationUrls}">No URLs configured.</p>
+        </div>
+      </li>
+    </ul>
+    <p data-sly-test="${!model.sidebarNavigation}">
+      No navigation items configured.
+    </p>
+  </div>
+
+  <!-- Tab 4: Region -->
+  <div class="region">
+    <h2>Region</h2>
+    <p><strong>Country:</strong> ${model.country || 'Not set'}</p>
+    <div>
+      <strong>Info:</strong> ${model.info @ context='html' || 'Not set'}
+    </div>
+  </div>
+</div>
